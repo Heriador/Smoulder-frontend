@@ -1,28 +1,27 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-import { register } from '../../store/actions/chat'
+import { register } from '../../store/actions/auth'
 
+const Register = ({ history }) => {
+  const dispatch = useDispatch()
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-const Register = ({history}) => {
-
-    const dispatch = useDispatch()
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        try {
-            dispatch(register({nombre: firstName, apellido: lastName, correo: email, contraseña: password}, history))
-        } catch (e) {
-            console.log(e.message);
-        }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    try {
+      dispatch(register({ nombre: firstName, apellido: lastName, correo: email, contraseña: password }, history))
+    } catch (e) {
+      console.log(e.message)
     }
+  }
 
-    return (
+  return (
         <Container >
             <Row className='justify-content-center'>
                 <Col sm={4} >
@@ -82,7 +81,7 @@ const Register = ({history}) => {
                 </Col>
             </Row>
         </Container>
-    )
+  )
 }
 
 export default Register

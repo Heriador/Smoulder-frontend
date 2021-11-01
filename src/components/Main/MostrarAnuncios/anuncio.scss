@@ -1,0 +1,51 @@
+.custom_link{
+
+  text-decoration: none;
+  color: black;
+  margin-bottom: 1.5rem;
+
+  
+    
+
+  .amt {
+    background-color: #fff;  
+    overflow: hidden;
+    border: 0.0625rem solid #dadce0;
+  }
+
+  .actividad {
+    
+      -webkit-border-radius: 0.5rem;
+      border-radius: 0.5rem;
+  
+    :hover{
+      // text-decoration: underline;
+      background-color: #b2b3b6;
+    }
+  }
+
+  .amt__top {
+    display: flex;
+    align-items: center;
+  }
+  .amt__top > * {
+    margin-left: 10px;
+  }
+  .amt__Cnt {
+    padding: 0.5rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .amt__txt {
+    margin: 10px 15px;
+    margin-left: 60px;
+  }
+  .amt__img {
+    height: 150px;
+    width: 150px;
+    object-fit: contain;
+    margin-left: 10px;
+  }
+}
+

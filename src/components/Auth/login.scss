@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;1,100;1,200;1,300&display=swap');
+.loginContainer{
+
+    display: flex;
+    flex-direction: column;
+    .googleContainer{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-self: center;
+        width: 300px;
+        height: 50px;
+        background: #4385f4;
+        position: relative;
+        color: white;
+        font-family: "Poppins", sans-serif;
+        font-size: 13px;
+        cursor: pointer;
+        margin: 10px;
+    
+    
+        img {
+            width: 12.5%;
+            height: 100%;
+            object-fit: contain;
+            left: 10px;
+            border-radius: 3px;
+            position: absolute;
+        }
+    
+    }
+}
