@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react'
 import { Image, Dropdown, Form } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useSelector, useDispatch } from 'react-redux'
-import { crearComentario, obtenerComentarios } from '../../../../../store/actions/comentarios'
+import { crearComentario, obtenerComentarios, eliminarComentario } from '../../../../../store/actions/comentarios'
 import ActividadService from '../../../../../Services/ActividadService'
 
 import './infoActividadUsuario.scss'
@@ -13,9 +13,10 @@ import './infoActividadUsuario.scss'
 const InfoActividadUsuario = ({ user, actividad }) => {
   const dispatch = useDispatch()
   const archivo = useSelector(state => state.ArchivoReducer.archivo)
+  const usuario = useSelector(state => state.AuthReducer.user)
   const comentarios = useSelector(state => state.ComentariosReducer.comentarios)
 
-  const ext = Object.keys(archivo).length !== 0 && archivo.Nombre.split('.')[1].toLowerCase()
+  const ext = Object.keys(archivo).length !== 0 && archivo.nombre.split('.')[1].toLowerCase()
 
   const [estado, setEstado] = useState('')
   const [comentario, setComentario] = useState('')
@@ -24,22 +25,23 @@ const InfoActividadUsuario = ({ user, actividad }) => {
 
   const handleClick = async () => {
     setEstado('revisado')
-    await ActividadService.actualizarEstado({ id: actividad.id, usuarioId: user.id })
-    //     dispatch()
+    try {
+      await ActividadService.actualizarEstado({ id: actividad.id, usuarioId: user.id })
+    } catch (e) {
+      console.error(e.message)
+    }
   }
 
-  const handleKeyDown = async (e) => {
+  const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      dispatch(crearComentario({ contenido: comentario, actividadId: actividad.id }))
+      dispatch(crearComentario({ contenido: comentario, actividadId: actividad.id, toUserId: user.id }))
       setComentario('')
     }
   }
 
   useEffect(() => {
-    if (comentarios.length === 0 || comentario !== '') {
-      dispatch(obtenerComentarios(actividad.id))
-    }
-  }, [dispatch, actividad.id, comentario, comentarios])
+    dispatch(obtenerComentarios({ actividadId: actividad.id, toUserId: user.id }))
+  }, [dispatch, actividad.id, user.id])
 
   return (
      <div className='info_container w-100 h-100 d-flex justify-content-center '>
@@ -48,10 +50,10 @@ const InfoActividadUsuario = ({ user, actividad }) => {
           <div className='d-flex flex-row w-100'>
                <div className='info_archivoContainer'>
                     {
-                         Object.keys(archivo).length !== 0 &&
-                         <div className='info_archivo'>
+                         Object.keys(archivo).length !== 0
+                           ? <div className='info_archivo'>
                          <div >
-
+                              <p>{archivo.nombre}</p>
                               <a
                                    href={
                                         ext === 'png' || ext === 'jpg'
@@ -66,11 +68,11 @@ const InfoActividadUsuario = ({ user, actividad }) => {
                                         src={
                                              ext === 'png' || ext === 'jpg'
                                                ? archivo.url
-                                               : `http://localhost:8080/public/placeholders/${archivo.Nombre.split('.')[1].toLowerCase()}.png`
+                                               : `http://localhost:8080/public/placeholders/${archivo.nombre.split('.')[1].toLowerCase()}.png`
 
                                         }
 
-                                        alt='pdf'
+                                        alt={archivo.nombre}
                                         style={{
                                           width: '150px',
                                           height: '150px'
@@ -80,9 +82,13 @@ const InfoActividadUsuario = ({ user, actividad }) => {
 
                          </div>
                          <div>
-                              <FontAwesomeIcon icon='download' />
+                              <a href={archivo.url}>
+                                   <FontAwesomeIcon icon='download' />
+
+                              </a>
                          </div>
                          </div>
+                           : <p>Sin archivo subido</p>
                     }
                </div>
                <div className='info_estado'>
@@ -109,22 +115,36 @@ const InfoActividadUsuario = ({ user, actividad }) => {
                          comentarios.length > 0 &&
                          comentarios.map((comentario, index) => {
                            return (
-                                   <div className=' d-flex m-2 ' key={index}>
-                                        < Image
-                                             roundedCircle
-                                             src={comentario.Usuario.avatar}
-                                             alt='avatar'
-                                             style={{
-                                               width: '50px',
-                                               height: '50px'
-                                             }}
-                                        />
-                                        <div className='mx-2'>
-                                             <h5>{comentario.Usuario.nombre} {comentario.Usuario.apellido}</h5>
-                                             <p>{comentario.contenido}</p>
-                                        </div>
+                                   <div key={index} className='d-flex '>
+                                        <div className=' d-flex m-2 ' >
+                                             < Image
+                                                  roundedCircle
+                                                  src={
+                                                       comentario.Usuario.avatar ||
+                                                       'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/s75-c-fbw=1/photo.jpg'
 
+                                                  }
+                                                  alt='avatar'
+                                                  style={{
+                                                    width: '50px',
+                                                    height: '50px'
+                                                  }}
+                                             />
+                                             <div className='mx-2'>
+                                                  <h5>{comentario.Usuario.nombre} {comentario.Usuario.apellido}</h5>
+                                                  <p>{comentario.contenido}</p>
+                                             </div>
+
+                                        </div>
+                                        <div>
+
+                                             {
+                                                  comentario.Usuario.id === usuario.id &&
+                                                  <FontAwesomeIcon icon='trash' onClick={() => dispatch(eliminarComentario({ id: comentario.id })) } />
+                                             }
+                                        </div>
                                    </div>
+
                            )
                          })
                     }

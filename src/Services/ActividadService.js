@@ -1,40 +1,43 @@
 import API from './api'
 
 const ActividadService = {
-  crear: async (params) => {
-    const actividad = await API.post('/anuncio/crear', params)
-
-    console.log(actividad)
-    return actividad.data
-  },
   crearActividad: async (params) => {
-    const actividad = await API.post('/actividad/crear', params)
+    try {
+      const actividad = await API.post('/actividad/crear', params)
 
-    console.log(actividad)
-    return actividad.data
+      return actividad.data
+    } catch (e) {
+      console.error(e.message)
+    }
   },
   obtener: async (entornoId) => {
-    const actividad = await API.get('/actividad/listar', {
-      params: {
-        entornoId
-      }
-    })
+    try {
+      const actividad = await API.get('/actividad/listar', {
+        params: {
+          entornoId
+        }
+      })
 
-    localStorage.setItem('actividades', JSON.stringify(actividad.data))
-    return actividad.data
-  },
-  actualizar: async (params) => {
-    const actividad = await API.put('/actividad/actualizar', params)
-
-    console.log(actividad)
-    // return actividad.data
+      localStorage.setItem('actividades', JSON.stringify(actividad.data))
+      return actividad.data
+    } catch (e) {
+      console.error(e.message)
+    }
   },
   actualizarEstado: async ({ id, usuarioId }) => {
     try {
       const actividad = await API.put(`/actividad/actualizarEstado/${id}`, { usuarioId })
 
-      console.log(actividad)
       return actividad.data[0]
+    } catch (e) {
+      console.error(e.message)
+    }
+  },
+  eliminar: async (id) => {
+    try {
+      await API.delete(`/actividad/eliminar/${id}`)
+
+      return id
     } catch (e) {
       console.error(e.message)
     }

@@ -9,7 +9,6 @@ const JoinClass = ({ close, join }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     join(codigo)
-    console.log(codigo)
     close()
   }
 
@@ -27,7 +26,7 @@ const JoinClass = ({ close, join }) => {
             </Form.Group>
             <div className='d-flex justify-content-between align-items-center mx-4 mt-4'>
                 <Button type='submit'>
-                    Save Changes
+                    Unirse
                 </Button>
                 <Button variant="danger" onClick={close} className='mx-4'>
                 Cancel

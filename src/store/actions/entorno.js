@@ -38,9 +38,8 @@ export const fetchEntorno = () => async (dispatch) => {
 
 export const crearEntorno = (params) => async (dispatch) => {
   try {
-    const { titulo, descripcion, user } = params
-    const entorno = await EntornoService.crearEntorno({ titulo, descripcion, creadorId: user.id })
-    console.log(entorno)
+    const { titulo, descripcion } = params
+    const entorno = await EntornoService.crearEntorno({ titulo, descripcion })
     delete entorno.creadorId
 
     dispatch({
@@ -55,7 +54,6 @@ export const crearEntorno = (params) => async (dispatch) => {
 export const unirseEntorno = (params) => async (dispatch) => {
   try {
     const entorno = await EntornoService.unirseEntorno({ entornoId: params })
-    // entorno.Usuarios.push(user)
     entorno.creador = entorno.Usuarios.filter((usuario) => usuario.id === entorno.creadorId)[0]
     delete entorno.creadorId
 

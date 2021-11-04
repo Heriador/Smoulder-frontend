@@ -28,8 +28,6 @@ const UpdateForm = ({ user, close }) => {
     formData.append('file', avatar)
     formData.append('bucketName', 'images-smoulder')
 
-    console.log(formData)
-
     await dispatch(updateUser(formData))
 
     close()
@@ -81,10 +79,15 @@ const UpdateForm = ({ user, close }) => {
                     onChange={(e) => setAvatar(e.target.files[0])}
                 />
             </Form.Group>
-
+            <div className='d-flex justify-content-between mt-2'>
             <Button type='submit'>
-                Save Changes
+                Guardar cambios
             </Button>
+            <Button variant='danger' onClick={() => close()}>
+                cancel
+            </Button>
+            </div>
+
         </Form>
   )
 }

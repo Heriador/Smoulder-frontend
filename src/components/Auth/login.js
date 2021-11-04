@@ -12,15 +12,15 @@ import './login.scss'
 const Login = ({ history }) => {
   const dispatch = useDispatch()
   const token = useSelector(state => state.AuthReducer.token)
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [correo, setCorreo] = useState('')
+  const [contraseña, setContraseña] = useState('')
   const [Login, setLogin] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
     try {
-      dispatch(login({ correo: email, contraseña: password }, history))
+      dispatch(login({ correo, contraseña }, history))
     } catch (e) {
       console.log(e.message)
     }
@@ -45,25 +45,25 @@ const Login = ({ history }) => {
             <Card.Body className='loginContainer'>
               <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="loginEmail">
-                  <Form.Label className="mr-4">email</Form.Label>
+                  <Form.Label className="mr-4">correo</Form.Label>
                   <Form.Control
                     type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Correo"
+                    value={correo}
+                    onChange={(e) => setCorreo(e.target.value)}
                   />
                 </Form.Group>
                 <Form.Group controlId="loginPassword">
-                  <Form.Label className="mr-4">password</Form.Label>
+                  <Form.Label className="mr-4">contraseña</Form.Label>
                   <Form.Control
                     type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Contraseña"
+                    value={contraseña}
+                    onChange={(e) => setContraseña(e.target.value)}
                   />
                 </Form.Group>
                 <Button className="mt-3" variant="primary" type="submit">
-                  Submit
+                  Iniciar Sesion
                 </Button>
               </Form>
               <div className='googleContainer' onClick={() => {
@@ -72,13 +72,13 @@ const Login = ({ history }) => {
                 setLogin(true)
               }}>
                 <img src={GoogleImg} alt='google login' />
-                <p>Login with google</p>
+                <p>Iniciar Sesion con google</p>
               </div>
             </Card.Body>
             <Card.Footer>
               <p>
-                 Don't have an account?
-                <Link to="/register">Sign up</Link>
+                 No tienes una cuenta?
+                <Link to="/register">Registrate</Link>
               </p>
             </Card.Footer>
           </Card>

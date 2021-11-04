@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react'
-import { Navbar, Nav, Dropdown, Modal, Button, Offcanvas } from 'react-bootstrap'
+import { Navbar, Nav, Dropdown, Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -16,7 +16,6 @@ const NavbarApp = ({ user, out, calificando, entorno, integrantes }) => {
   const [showUpdateModal, setShowUpdateModal] = useState(false)
   const [showJoinClassModal, setShowJoinClassModal] = useState(false)
   const [showCreateClassModal, setShowCreateClassModal] = useState(false)
-  const [show, setShow] = useState(false)
 
   const handleCloseUpdate = () => {
     setShowUpdateModal(false)
@@ -35,8 +34,7 @@ const NavbarApp = ({ user, out, calificando, entorno, integrantes }) => {
   }
 
   const handleCreate = (params) => {
-    dispatch(crearEntorno({ ...params, creadorId: user.id }))
-    console.log(params)
+    dispatch(crearEntorno(params))
   }
   const handleJoin = (params) => {
     dispatch(unirseEntorno(params))
@@ -48,7 +46,6 @@ const NavbarApp = ({ user, out, calificando, entorno, integrantes }) => {
       expand="lg"
       className="shadow"
     >
-
       <Navbar.Brand href="/" className="text-dark fs-2 mx-2">
         SMOULDER
       </Navbar.Brand>
@@ -61,37 +58,24 @@ const NavbarApp = ({ user, out, calificando, entorno, integrantes }) => {
               Tablon
             </Nav.Link>
 
-          {/* <Link to={`/${entorno}`}> Tablon </Link> */}
-
           </Nav.Item>
-        {/* <Nav.Link >
 
-          <Link to={`/${entorno}`}> Tablon </Link>
-        </Nav.Link> */}
         {
           user.Rol.nombre === 'jefe' &&
           <Nav.Item>
             <Nav.Link as={Link} to={`/${entorno}/actividades`} eventKey='2' >
             Revisar Actividades
             </Nav.Link>
-            {/* <Link to={`/${entorno}/actividades`}> Revisar Actividades </Link> */}
 
           </Nav.Item>
-          // <Nav.Link >
-          //   <Link to={`/${entorno}/actividades`}> Revisar Actividades </Link>
-          // </Nav.Link>
+
         }
         <Nav.Item>
           <Nav.Link as={Link} to={`/${entorno}/integrantes`} eventKey='3' >
                 integrantes
           </Nav.Link>
-        {/* <Link to={`/${calificando}/integrantes`}> integrantes </Link> */}
 
         </Nav.Item>
-
-        {/* <Nav.Link>
-          <Link to={`/${calificando}/integrantes`}> integrantes </Link>
-        </Nav.Link> */}
 
       </Nav>
       }
@@ -112,9 +96,13 @@ const NavbarApp = ({ user, out, calificando, entorno, integrantes }) => {
                       Crear Entorno
                     </Dropdown.Item>
                   }
-                  <Dropdown.Item href="#" onClick={() => setShowJoinClassModal(true)}>
-                    Unirse a un Entorno
-                  </Dropdown.Item>
+                  {
+                    user.Rol.nombre === 'empleado' &&
+                    <Dropdown.Item href="#" onClick={() => setShowJoinClassModal(true)}>
+                      Unirse a un Entorno
+                    </Dropdown.Item>
+                  }
+
                 </Dropdown.Menu>
             </Dropdown>
           }
@@ -137,10 +125,10 @@ const NavbarApp = ({ user, out, calificando, entorno, integrantes }) => {
             </Dropdown.Toggle>
             <Dropdown.Menu align='right'>
               <Dropdown.Item href="#" onClick={handleLogOut}>
-                LogOut
+                Cerrar Sesion
               </Dropdown.Item>
               <Dropdown.Item href="#" onClick={() => setShowUpdateModal(true)} >
-                Update User
+                Actualizar informacion
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
@@ -165,17 +153,13 @@ const NavbarApp = ({ user, out, calificando, entorno, integrantes }) => {
             showUpdateModal && <UpdateForm close={handleCloseUpdate} user={user}/>
           }
           {
-            showCreateClassModal && <CreateClass close={handleCloseCreate} create={handleCreate} user={user}/>
+            showCreateClassModal && <CreateClass close={handleCloseCreate} create={handleCreate} />
           }
           {
             showJoinClassModal && <JoinClass close={handleCloseJoin} join={handleJoin}/>
           }
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="danger" onClick={handleCloseUpdate}>
-            Cancel
-          </Button>
-        </Modal.Footer>
+
       </Modal>
     </Navbar>
   )

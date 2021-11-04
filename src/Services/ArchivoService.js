@@ -3,18 +3,39 @@ import API from './api'
 
 const ArchivoService = {
   crear: async (params) => {
-    const archivo = await API.post('/archivo/crear', params)
+    try {
+      const archivo = await API.post('/archivo/crear', params)
 
-    return archivo.data
+      return archivo.data
+    } catch (e) {
+      console.error(e.message)
+    }
   },
   obtener: async ({ actividadId, usuarioId }) => {
-    const archivo = await API.get('/archivo/obtener', {
-      params: {
-        actividadId,
-        usuarioId
-      }
-    })
-    return archivo.data
+    try {
+      const archivo = await API.get('/archivo/obtener', {
+        params: {
+          actividadId,
+          usuarioId
+        }
+      })
+      return archivo.data
+    } catch (e) {
+      console.error(e.message)
+    }
+  },
+  eliminar: async ({ actividadId, archivoId }) => {
+    try {
+      const archivo = await API.delete(`/archivo/eliminar/${archivoId}`, {
+        params: {
+          actividadId
+        }
+      })
+
+      return archivo.data
+    } catch (e) {
+      console.error(e.message)
+    }
   }
 }
 

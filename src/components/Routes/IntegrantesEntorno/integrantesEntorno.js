@@ -2,7 +2,7 @@
 import React from 'react'
 import { Image, Container, Row } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
-import NavbarApp from '../../Class/components/navbar'
+import NavbarApp from '../../EntornosHome/components/navbar'
 
 const IntegrantesEntorno = ({ entorno }) => {
   const user = useSelector(state => state.AuthReducer.user)
@@ -37,7 +37,6 @@ const IntegrantesEntorno = ({ entorno }) => {
                                              alt={usuario.nombre}
                                              style={{ width: '50px', height: '50px' }}
                                         />
-                                       {/* <img src={usuario.avatar} alt={usuario.Nombre} /> */}
                                        <p className='mx-2'>{usuario.fullName}</p>
                                   </li>
                       )

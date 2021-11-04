@@ -20,7 +20,7 @@ export const login = (params, history) => async (dispatch) => {
 export const googleAuth = (history) => async (dispatch) => {
   try {
     const data = await AuthService.googleAuth()
-    console.log(data)
+
     dispatch({ type: GOOGLE_AUTH, payload: data })
     history.push('/')
   } catch (e) {
@@ -52,5 +52,4 @@ export const updateUser = (params) => async (dispatch) => {
 export const logOut = () => dispatch => {
   AuthService.logout()
   dispatch({ type: LOGOUT })
-  console.log('entro')
 }

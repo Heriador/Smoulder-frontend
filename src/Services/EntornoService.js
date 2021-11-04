@@ -4,20 +4,36 @@ import API from './api'
 const EntornoService = {
 
   getEntornos: async () => {
-    const entornos = await API.get('/env ')
-    return entornos.data
+    try {
+      const entornos = await API.get('/env ')
+      return entornos.data
+    } catch (e) {
+      console.error(e.message)
+    }
   },
   crearEntorno: async (params) => {
-    const entornoCreado = await API.post('/env/crear', params)
-    return entornoCreado.data
+    try {
+      const entornoCreado = await API.post('/env/crear', params)
+      return entornoCreado.data
+    } catch (e) {
+      console.error(e.message)
+    }
   },
   unirseEntorno: async (params) => {
-    const entornoUnido = await API.post('/env/unirse', params)
-    return entornoUnido.data
+    try {
+      const entornoUnido = await API.post('/env/unirse', params)
+      return entornoUnido.data
+    } catch (e) {
+      console.error(e.message)
+    }
   },
   eliminarEntorno: async (id) => {
-    const entornoEliminado = await API.delete(`/entorno/eliminar/${id}`)
-    return entornoEliminado.data
+    try {
+      const entornoEliminado = await API.delete(`/entorno/eliminar/${id}`)
+      return entornoEliminado.data
+    } catch (e) {
+      console.error(e.message)
+    }
   }
 
 }

@@ -2,9 +2,9 @@
 /* eslint-disable react/react-in-jsx-scope */
 import Login from './components/Auth/login'
 import Register from './components/Auth/register'
-import ClassEnv from './components/Class/classEnv'
+import EntornoHome from './components/EntornosHome/entornosHome'
 import ProtectedRoute from './components/Routes/protectedRoute'
-import Actividades from './components/Main/Actividades/actividades'
+import Actividades from './components/MainEntorno/Actividades/actividades'
 import './App.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -21,7 +21,7 @@ function App () {
     <Router>
       <div className="App">
        <Switch>
-         {
+         { // Rutas Entorno
            entornos.map((entorno, idx) => (
              <ProtectedRoute
               key={`${idx}ent`}
@@ -31,23 +31,23 @@ function App () {
              />
            ))
          }
-         {
+         { // Rutas calificar actividades
            entornos.map((entorno, idx) => (
-             <ProtectedRoute key={`${idx}actividad`} exact path={`/${entorno.id}/actividades`} component={CalificarActividades} entorno={entorno}/>
+             <ProtectedRoute key={`${idx}calfactividad`} exact path={`/${entorno.id}/actividades`} component={CalificarActividades} entorno={entorno}/>
            ))
          }
-         {
+         { // Rutas integrantes entorno
            entornos.map((entorno, idx) => (
              <ProtectedRoute key={`${idx}integrantes`} exact path={`/${entorno.id}/integrantes`} component={IntegrantesEntorno} entorno={entorno}/>
            ))
          }
-         {
+         { // Rutas actividades
               actividades.map((actividad, idx) => (
-                <ProtectedRoute key={idx} exact path={`/${actividad.entornoId}/${actividad.id}`} component={Actividades} actividad={actividad}/>
+                <ProtectedRoute key={`${idx}actividad`} exact path={`/${actividad.entornoId}/${actividad.id}`} component={Actividades} actividad={actividad} entorno={actividad.entornoId}/>
               ))
 
           }
-         <ProtectedRoute exact path='/' component={ClassEnv}/>
+         <ProtectedRoute exact path='/' component={EntornoHome}/>
          <Route exact path='/login' component={Login} />
          <Route exact path='/register' component={Register} />
        </Switch>

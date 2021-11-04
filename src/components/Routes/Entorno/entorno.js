@@ -3,8 +3,8 @@
 import React from 'react'
 import { Container, Row } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
-import NavbarApp from '../../Class/components/navbar'
-import MainEntorno from '../../Main/mainEntorno'
+import NavbarApp from '../../EntornosHome/components/navbar'
+import MainEntorno from '../../MainEntorno/mainEntorno'
 
 const Entorno = ({ entorno }) => {
   const user = useSelector(state => state.AuthReducer.user)

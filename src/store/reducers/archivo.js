@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { CREAR_ARCHIVO, OBTENER_ARCHIVO } from '../actions/archivo'
+import { CREAR_ARCHIVO, OBTENER_ARCHIVO, ELIMINAR_ARCHIVO } from '../actions/archivo'
 
 const initialState = {
   archivo: {}
@@ -17,6 +17,11 @@ const ArchivoReducer = (state = initialState, action) => {
       return {
         ...state,
         archivo: payload
+      }
+    case ELIMINAR_ARCHIVO:
+      return {
+        ...state,
+        archivo: {}
       }
     default:
       return state

@@ -2,32 +2,43 @@ import API from './api'
 
 const AuthService = {
   login: async (params) => {
-    const user = await API.post('/login', params)
+    try {
+      const user = await API.post('/login', params)
 
-    setHeaderStorage(user.data)
-    return user.data
+      setHeaderStorage(user.data)
+      return user.data
+    } catch (e) {
+      console.error(e.message)
+    }
   },
   googleAuth: async () => {
-    const user = await API.get('/auth/google/get', { withCredentials: true })
-    console.log(user)
-    // if(user.data) {
-    setHeaderStorage(user.data)
-    return user.data
-    // }
+    try {
+      const user = await API.get('/auth/google/get', { withCredentials: true })
+      setHeaderStorage(user.data)
+      return user.data
+    } catch (e) {
+      console.error(e.message)
+    }
   },
   register: async (params) => {
-    const user = await API.post('/register', params)
+    try {
+      const user = await API.post('/register', params)
 
-    setHeaderStorage(user.data)
-    return user.data
+      setHeaderStorage(user.data)
+      return user.data
+    } catch (e) {
+      console.log(e.message)
+    }
   },
   update: async (params) => {
-    const user = await API.post('/update', params)
+    try {
+      const user = await API.post('/update', params)
 
-    console.log('Usuario actualizdo', user.data)
-    // setHeaderStorage(user.data)
-    localStorage.setItem('user', JSON.stringify(user.data))
-    return user.data
+      localStorage.setItem('user', JSON.stringify(user.data))
+      return user.data
+    } catch (e) {
+      console.error(e.message)
+    }
   },
   logout: async () => {
     API.defaults.headers.Authorization = ''

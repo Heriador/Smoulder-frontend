@@ -1,18 +1,17 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react'
-import { Container, Row, Modal } from 'react-bootstrap'
+import React, { useEffect } from 'react'
+import { Container, Row } from 'react-bootstrap'
 import NavbarApp from './components/navbar'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchEntorno, eliminarEntorno } from '../../store/actions/entorno'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSmile, faImage } from '@fortawesome/free-regular-svg-icons'
-import { faSpinner, faEllipsisV, faPlus, faSignOutAlt, faTrash, faCaretDown, faUpload, faTimes, faBell, faAddressBook, faDownload, faEdit } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faTrash, faCaretDown, faUpload, faTimes, faBell, faAddressBook, faDownload, faEdit } from '@fortawesome/free-solid-svg-icons'
 import EntornoPreview from './components/EntornoPreview/entornoPreview'
 
-library.add(faSmile, faImage, faSpinner, faEllipsisV, faPlus, faSignOutAlt, faTrash, faCaretDown, faUpload, faTimes, faBell, faAddressBook, faDownload, faEdit)
+library.add(faPlus, faTrash, faCaretDown, faUpload, faTimes, faBell, faAddressBook, faDownload, faEdit)
 
-const ClassEnv = () => {
+const EntornoHome = () => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.AuthReducer.user)
   const entornos = useSelector(state => state.EntornoReducer.entornos)
@@ -23,7 +22,7 @@ const ClassEnv = () => {
 
   useEffect(() => {
     dispatch(fetchEntorno())
-  }, [dispatch, entornos])
+  }, [dispatch, user.id])
 
   return (
     <Container fluid className='p-0 d-flex flex-column position-absolute h-100'>
@@ -42,4 +41,4 @@ const ClassEnv = () => {
   )
 }
 
-export default ClassEnv
+export default EntornoHome

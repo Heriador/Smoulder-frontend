@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { CREAR_ACTIVIDAD, CREAR_ANUNCIO, OBTENER_ACTIVIDADES } from '../actions/actividades'
+import { CREAR_ACTIVIDAD, OBTENER_ACTIVIDADES, ELIMINAR_ACTIVIDAD } from '../actions/actividades'
 
 const initialState = {
   actividades: JSON.parse(localStorage.getItem('actividades')) || []
@@ -9,15 +9,6 @@ const ActividadesReducer = (state = initialState, action) => {
   const { type, payload } = action
 
   switch (type) {
-    case CREAR_ANUNCIO:
-      return {
-        ...state,
-        actividades: [
-          payload,
-          ...state.actividades
-        ]
-      }
-
     case CREAR_ACTIVIDAD:
 
       return {
@@ -32,6 +23,12 @@ const ActividadesReducer = (state = initialState, action) => {
       return {
         ...state,
         actividades: payload.data.reverse()
+      }
+
+    case ELIMINAR_ACTIVIDAD:
+      return {
+        ...state,
+        actividades: state.actividades.filter(actividad => actividad.id !== payload)
       }
     default:
       return state

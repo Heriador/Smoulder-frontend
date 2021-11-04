@@ -7,15 +7,16 @@ import { register } from '../../store/actions/auth'
 
 const Register = ({ history }) => {
   const dispatch = useDispatch()
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [nombre, setNombre] = useState('')
+  const [apellido, setApellido] = useState('')
+  const [correo, setCorreo] = useState('')
+  const [contraseña, setContraseña] = useState('')
+  const [rol, setRol] = useState(1)
 
   const handleSubmit = (e) => {
     e.preventDefault()
     try {
-      dispatch(register({ nombre: firstName, apellido: lastName, correo: email, contraseña: password }, history))
+      dispatch(register({ nombre, apellido, correo, contraseña, rol }, history))
     } catch (e) {
       console.log(e.message)
     }
@@ -30,52 +31,59 @@ const Register = ({ history }) => {
                         <Card.Body>
                             <Form onSubmit={handleSubmit}>
                                 <Form.Group controlId='RegisterFirstName'>
-                                    <Form.Label className='mr-4'>First Name</Form.Label>
+                                    <Form.Label className='mr-4'>Nombre</Form.Label>
                                     <Form.Control
                                         type='text'
-                                        placeholder='firstName'
-                                        value={firstName}
-                                        onChange={(e) => setFirstName(e.target.value)}
+                                        placeholder='nombre'
+                                        value={nombre}
+                                        onChange={(e) => setNombre(e.target.value)}
                                     />
                                 </Form.Group>
-                                <Form.Group controlId='RegisterLastName'>
-                                    <Form.Label className='mr-4'>Last Name</Form.Label>
+                                <Form.Group controlId='Registerapellido'>
+                                    <Form.Label className='mr-4'>Apellido</Form.Label>
                                     <Form.Control
                                         type='text'
-                                        placeholder='lastName'
-                                        value={lastName}
-                                        onChange={(e) => setLastName(e.target.value)}
+                                        placeholder='Apellido'
+                                        value={apellido}
+                                        onChange={(e) => setApellido(e.target.value)}
                                     />
                                 </Form.Group>
-                                <Form.Group controlId='RegisterEmail'>
-                                    <Form.Label className='mr-4'>Email</Form.Label>
+                                <Form.Group controlId='Registercorreo'>
+                                    <Form.Label className='mr-4'>Correo</Form.Label>
                                     <Form.Control
                                         type='email'
-                                        placeholder='Email'
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
+                                        placeholder='Correo'
+                                        value={correo}
+                                        onChange={(e) => setCorreo(e.target.value)}
                                     />
                                 </Form.Group>
-                                <Form.Group controlId='RegisterPassword'>
-                                    <Form.Label className='mr-4'>password</Form.Label>
+                                <Form.Group controlId='Registercontraseña'>
+                                    <Form.Label className='mr-4'>Contraseña</Form.Label>
                                     <Form.Control
                                         type='password'
-                                        placeholder='Password'
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
+                                        placeholder='Contraseña'
+                                        value={contraseña}
+                                        onChange={(e) => setContraseña(e.target.value)}
                                     />
+                                </Form.Group>
+                                <Form.Group>
+                                <Form.Label className='mr-4'>Rol</Form.Label>
+                                    <Form.Select onChange={(e) => setRol(e.target.value)} >
+                                        <option value={1}>Jefe</option>
+                                        <option value={2}>Empleado</option>
+                                    </Form.Select>
                                 </Form.Group>
                                 <Button
                                     className='mt-3'
                                     variant="primary"
                                     type="submit"
                                 >
-                                    Sign up
+                                    Registrarse
                                 </Button>
                             </Form>
                         </Card.Body>
                         <Card.Footer>
-                            <p>Already have an account? <Link to='/login'>Log in</Link> </p>
+                            <p>Ya tienes una cuenta? <Link to='/login'>Inicia Sesion</Link> </p>
                         </Card.Footer>
                     </Card>
                 </Col>

@@ -2,14 +2,14 @@
 import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 
-const CreateClass = ({ close, create, user }) => {
+const CreateClass = ({ close, create }) => {
   const [titulo, setTitulo] = useState('')
   const [descripcion, setDescripcion] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    create({ titulo, descripcion, user })
+    create({ titulo, descripcion })
 
     close()
   }
@@ -37,10 +37,9 @@ const CreateClass = ({ close, create, user }) => {
                 </Form.Group>
                 <div className='d-flex justify-content-between align-items-center mx-4 mt-4'>
                     <Button type='submit'>
-                        Save Changes
+                        Crear Entorno
                     </Button>
                     <Button variant="danger" onClick={() => {
-                      console.log('presionando')
                       close()
                     }} className='mx-4'>
                     Cancel

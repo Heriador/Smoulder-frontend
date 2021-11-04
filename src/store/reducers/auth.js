@@ -29,7 +29,8 @@ const AuthReducer = (state = initialState, action) => {
     case REGISTER:
       return {
         ...state,
-        user: payload,
+        user: payload.user,
+        token: payload.token,
         isLoggedIn: true
       }
     case UPDATE_USER:

@@ -1,8 +1,14 @@
 .body_user{
     border: 1px solid black;
     cursor: pointer;
-    padding: 0;
+
+    
+
     :hover{
         background-color: #979696;
     }
+}
+
+.selected{
+    background-color: #979696;
 }
