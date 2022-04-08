@@ -2,7 +2,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import Login from './components/Auth/login'
 import Register from './components/Auth/register'
-import EntornoHome from './components/EntornosHome/entornosHome'
+import Home from './components/EntornosHome/Home'
 import ProtectedRoute from './components/Routes/protectedRoute'
 import Actividades from './components/MainEntorno/Actividades/actividades'
 import './App.css'
@@ -47,7 +47,7 @@ function App () {
               ))
 
           }
-         <ProtectedRoute exact path='/' component={EntornoHome}/>
+         <ProtectedRoute exact path='/' component={Home}/>
          <Route exact path='/login' component={Login} />
          <Route exact path='/register' component={Register} />
        </Switch>

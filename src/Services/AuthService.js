@@ -44,6 +44,8 @@ const AuthService = {
     API.defaults.headers.Authorization = ''
     localStorage.removeItem('user')
     localStorage.removeItem('token')
+    localStorage.removeItem('entornos')
+    localStorage.removeItem('actividades')
     const res = await API.get('/logout', { withCredentials: true })
     console.log(res)
   }

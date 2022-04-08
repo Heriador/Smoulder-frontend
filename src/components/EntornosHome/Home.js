@@ -11,7 +11,7 @@ import EntornoPreview from './components/EntornoPreview/entornoPreview'
 
 library.add(faPlus, faTrash, faCaretDown, faUpload, faTimes, faBell, faAddressBook, faDownload, faEdit)
 
-const EntornoHome = () => {
+const Home = () => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.AuthReducer.user)
   const entornos = useSelector(state => state.EntornoReducer.entornos)
@@ -41,4 +41,4 @@ const EntornoHome = () => {
   )
 }
 
-export default EntornoHome
+export default Home

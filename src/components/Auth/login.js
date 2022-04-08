@@ -11,7 +11,7 @@ import './login.scss'
 
 const Login = ({ history }) => {
   const dispatch = useDispatch()
-  const token = useSelector(state => state.AuthReducer.token)
+  const isLoggedIn = useSelector(state => state.AuthReducer.isLoggedIn)
   const [correo, setCorreo] = useState('')
   const [contraseña, setContraseña] = useState('')
   const [Login, setLogin] = useState(false)
@@ -27,14 +27,14 @@ const Login = ({ history }) => {
   }
 
   const handleLogin = () => {
-    window.open('http://localhost:8080/auth/google', '_self')
+    window.open(`${process.env.REACT_APP_BACKEND}/auth/google`, '_self')
   }
 
   useEffect(() => {
-    if (Login || !token) {
+    if (Login || isLoggedIn) {
       dispatch(googleAuth(history))
     }
-  }, [dispatch, history, Login, token])
+  }, [dispatch, history, Login, isLoggedIn])
 
   return (
     <Container>
