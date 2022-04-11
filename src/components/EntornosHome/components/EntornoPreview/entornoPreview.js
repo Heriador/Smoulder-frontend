@@ -4,6 +4,7 @@ import { Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import foto from '../../../../assets/photo.png'
 import './entornoPreview.scss'
 
 const EntornoPreview = ({ entorno, eliminar }) => {
@@ -27,10 +28,7 @@ const EntornoPreview = ({ entorno, eliminar }) => {
         <Image
           className="joined__avatar"
           roundedCircle
-          src={
-            entorno.creador.avatar ||
-            'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/s75-c-fbw=1/photo.jpg'
-          }
+          src={ entorno.creador.avatar || foto }
           alt="creador"
         />
       </div>

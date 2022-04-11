@@ -3,6 +3,7 @@ import React from 'react'
 import { Image, Container, Row } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import NavbarApp from '../../EntornosHome/components/navbar'
+import foto from '../../../assets/photo.png'
 
 const IntegrantesEntorno = ({ entorno }) => {
   const user = useSelector(state => state.AuthReducer.user)
@@ -17,7 +18,7 @@ const IntegrantesEntorno = ({ entorno }) => {
                     {
                          <li className='d-flex align-items-end'>
                               <Image roundedCircle
-                                   src={entorno.creador.avatar || 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/s75-c-fbw=1/photo.jpg'}
+                                   src={entorno.creador.avatar || foto }
                                    alt={entorno.creador.nombre}
                                    style={{ width: '50px', height: '50px' }}
                               />

@@ -55,7 +55,7 @@ const InfoActividad = ({ actividad }) => {
                                                   src={
                                                        ext === 'png' || ext === 'jpg'
                                                          ? archivo.url
-                                                         : `http://localhost:8080/public/placeholders/${archivo.nombre.split('.')[1].toLowerCase()}.png`
+                                                         : `${process.env.REACT_APP_BACKEND}/public/placeholders/${archivo.nombre.split('.')[1].toLowerCase()}.png`
 
                                                   }
 

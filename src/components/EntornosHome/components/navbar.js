@@ -10,6 +10,7 @@ import { crearEntorno, unirseEntorno } from '../../../store/actions/entorno'
 import UpdateForm from './UpdateForm/updateForm'
 import CreateClass from './CrearEntorno/crearEntorno'
 import JoinClass from './JoinEntorno/joinEntorno'
+import foto from '../../../assets/photo.png'
 
 const NavbarApp = ({ user, out, calificando, entorno, integrantes }) => {
   const dispatch = useDispatch()
@@ -109,9 +110,7 @@ const NavbarApp = ({ user, out, calificando, entorno, integrantes }) => {
 
           <Nav.Item className="d-inline-flex mt-2">
             <img
-              src={ user.avatar ||
-                'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/s75-c-fbw=1/photo.jpg'
-              }
+              src={ user.avatar || foto }
               width="40"
               height="40"
               className="rounded-circle mr-2 mb-2"
@@ -124,10 +123,10 @@ const NavbarApp = ({ user, out, calificando, entorno, integrantes }) => {
               {user.nombre} {user.apellido}
             </Dropdown.Toggle>
             <Dropdown.Menu align='right'>
-              <Dropdown.Item href="#" onClick={handleLogOut}>
+              <Dropdown.Item onClick={handleLogOut}>
                 Cerrar Sesion
               </Dropdown.Item>
-              <Dropdown.Item href="#" onClick={() => setShowUpdateModal(true)} >
+              <Dropdown.Item onClick={() => setShowUpdateModal(true)} >
                 Actualizar informacion
               </Dropdown.Item>
             </Dropdown.Menu>

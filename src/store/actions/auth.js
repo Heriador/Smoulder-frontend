@@ -1,7 +1,6 @@
 import AuthService from '../../Services/AuthService'
 
 export const LOGIN = 'LOGIN'
-export const GOOGLE_AUTH = 'GOOGLE_AUTH'
 export const REGISTER = 'REGISTER'
 export const UPDATE_USER = 'UPDATE_USER'
 export const LOGOUT = 'LOGOUT'
@@ -11,17 +10,6 @@ export const login = (params, history) => async (dispatch) => {
     const data = await AuthService.login(params)
 
     dispatch({ type: LOGIN, payload: data })
-    history.push('/')
-  } catch (e) {
-    console.log({ error: e.message })
-  }
-}
-
-export const googleAuth = (history) => async (dispatch) => {
-  try {
-    const data = await AuthService.googleAuth()
-
-    dispatch({ type: GOOGLE_AUTH, payload: data })
     history.push('/')
   } catch (e) {
     console.log({ error: e.message })

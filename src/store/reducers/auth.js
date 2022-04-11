@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { LOGIN, REGISTER, LOGOUT, GOOGLE_AUTH, UPDATE_USER } from '../actions/auth'
+import { LOGIN, REGISTER, LOGOUT, UPDATE_USER } from '../actions/auth'
 
 const initialState = {
   user: JSON.parse(localStorage.getItem('user')) || {},
@@ -13,13 +13,6 @@ const AuthReducer = (state = initialState, action) => {
   switch (type) {
     case LOGIN:
 
-      return {
-        ...state,
-        user: payload.user,
-        token: payload.token,
-        isLoggedIn: true
-      }
-    case GOOGLE_AUTH:
       return {
         ...state,
         user: payload.user,

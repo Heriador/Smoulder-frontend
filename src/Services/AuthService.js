@@ -11,15 +11,6 @@ const AuthService = {
       console.error(e.message)
     }
   },
-  googleAuth: async () => {
-    try {
-      const user = await API.get('/auth/google/get', { withCredentials: true })
-      setHeaderStorage(user.data)
-      return user.data
-    } catch (e) {
-      console.error(e.message)
-    }
-  },
   register: async (params) => {
     try {
       const user = await API.post('/register', params)

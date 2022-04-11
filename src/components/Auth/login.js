@@ -1,20 +1,18 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Container, Row, Col, Form, Card, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { login, googleAuth } from '../../store/actions/auth'
-import GoogleImg from '../../assets/googleImage.png'
+import { useDispatch } from 'react-redux'
+import { login } from '../../store/actions/auth'
 
 import './login.scss'
 
 const Login = ({ history }) => {
   const dispatch = useDispatch()
-  const isLoggedIn = useSelector(state => state.AuthReducer.isLoggedIn)
   const [correo, setCorreo] = useState('')
   const [contraseña, setContraseña] = useState('')
-  const [Login, setLogin] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -25,16 +23,6 @@ const Login = ({ history }) => {
       console.log(e.message)
     }
   }
-
-  const handleLogin = () => {
-    window.open(`${process.env.REACT_APP_BACKEND}/auth/google`, '_self')
-  }
-
-  useEffect(() => {
-    if (Login || isLoggedIn) {
-      dispatch(googleAuth(history))
-    }
-  }, [dispatch, history, Login, isLoggedIn])
 
   return (
     <Container>
@@ -66,14 +54,6 @@ const Login = ({ history }) => {
                   Iniciar Sesion
                 </Button>
               </Form>
-              <div className='googleContainer' onClick={() => {
-                handleLogin()
-
-                setLogin(true)
-              }}>
-                <img src={GoogleImg} alt='google login' />
-                <p>Iniciar Sesion con google</p>
-              </div>
             </Card.Body>
             <Card.Footer>
               <p>
