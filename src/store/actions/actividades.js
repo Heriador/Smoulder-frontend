@@ -8,7 +8,7 @@ export const ELIMINAR_ACTIVIDAD = 'ELIMINAR_ACTIVIDAD'
 
 export const createActividad = (params) => async (dispatch) => {
   const data = await ActividadService.crearActividad(params)
-
+  console.log(data)
   dispatch({ type: CREAR_ACTIVIDAD, payload: data })
 }
 

@@ -4,7 +4,7 @@ const ActividadService = {
   crearActividad: async (params) => {
     try {
       const actividad = await API.post('/actividad/crear', params)
-
+      console.log(actividad.data)
       return actividad.data
     } catch (e) {
       console.error(e.message)

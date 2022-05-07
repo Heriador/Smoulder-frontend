@@ -11,6 +11,7 @@ import backImage from '../../assets/backImage.jpg'
 import MostrarActividades from './MostrarActividades/mostrarActividades'
 import moment from 'moment'
 import './main.scss'
+import foto from '../../assets/photo.png'
 
 const MainEntorno = ({ entorno, user }) => {
   const dispatch = useDispatch()
@@ -202,7 +203,7 @@ const MainEntorno = ({ entorno, user }) => {
                                                   width: '50px',
                                                   height: '50px'
                                                 }}
-                                                src={ user.avatar || 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/s75-c-fbw=1/photo.jpg'}
+                                                src={ user.avatar || foto }
                                             />
                                             <div>Ingresa una nueva actividad</div>
                                         </div>

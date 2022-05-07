@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { crearArchivo, eliminarArchivo } from '../../../store/actions/archivo'
 import { crearComentario, obtenerComentarios, eliminarComentario } from '../../../store/actions/comentarios'
 import ActividadService from '../../../Services/ActividadService'
+import foto from '../../../assets/photo.png'
 
 import './estadoActividad.scss'
 
@@ -126,11 +127,7 @@ const EstadoActividad = ({ actividad, user }) => {
                                     <div className=' d-flex m-2' >
                                       < Image
                                            roundedCircle
-                                           src={
-                                                comentario.Usuario.avatar ||
-                                                'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/s75-c-fbw=1/photo.jpg'
-
-                                           }
+                                           src={ comentario.Usuario.avatar || foto }
                                            alt='avatar'
                                            style={{
                                              width: '50px',

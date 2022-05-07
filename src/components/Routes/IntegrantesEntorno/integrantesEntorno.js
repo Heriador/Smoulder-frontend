@@ -34,7 +34,7 @@ const IntegrantesEntorno = ({ entorno }) => {
                       return (
                                   <li key={index} className='d-flex align-items-end m-2'>
                                        <Image roundedCircle
-                                             src={usuario.avatar || 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/s75-c-fbw=1/photo.jpg'}
+                                             src={usuario.avatar || foto}
                                              alt={usuario.nombre}
                                              style={{ width: '50px', height: '50px' }}
                                         />

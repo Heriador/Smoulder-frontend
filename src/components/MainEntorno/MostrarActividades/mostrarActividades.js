@@ -8,6 +8,7 @@ import { obtenerActividades, eliminarActivdiad } from '../../../store/actions/ac
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Image } from 'react-bootstrap'
 import './mostrarActividades.scss'
+import foto from '../../../assets/photo.png'
 
 const MostrarActividadess = ({ entorno }) => {
   const dispatch = useDispatch()
@@ -45,10 +46,7 @@ const MostrarActividadess = ({ entorno }) => {
                                                             width: '50px',
                                                             height: '50px'
                                                           }}
-                                                          src={
-                                                          actividad.creador.avatar ||
-                                                          'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/s75-c-fbw=1/photo.jpg'
-                                                          }
+                                                          src={ actividad.creador.avatar || foto }
                                                           alt="creador"
                                                      />
                                                      <div>{actividad.creador.nombre} {actividad.creador.apellido}</div>
