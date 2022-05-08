@@ -68,7 +68,7 @@ const InfoActividadUsuario = ({ user, actividad }) => {
                                         src={
                                              ext === 'png' || ext === 'jpg'
                                                ? archivo.url
-                                               : `${process.env.REACT_APP_BACKEND}/placeholders/${archivo.nombre.split('.')[1].toLowerCase()}.png`
+                                               : `${process.env.REACT_APP_BACKEND}/placeholders/${archivo.nombre.slice((archivo.nombre.lastIndexOf('.') - 1 >>> 0) + 2).toLowerCase()}.png`
 
                                         }
 
