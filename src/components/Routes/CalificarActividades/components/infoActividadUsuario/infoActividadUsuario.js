@@ -16,7 +16,7 @@ const InfoActividadUsuario = ({ user, actividad }) => {
   const usuario = useSelector(state => state.AuthReducer.user)
   const comentarios = useSelector(state => state.ComentariosReducer.comentarios)
 
-  const ext = Object.keys(archivo).length !== 0 && archivo.nombre.split('.')[1].toLowerCase()
+  const ext = Object.keys(archivo).length !== 0 && archivo.nombre.slice((archivo.nombre.lastIndexOf('.') - 1 >>> 0) + 2).toLowerCase()
 
   const [estado, setEstado] = useState('')
   const [comentario, setComentario] = useState('')
@@ -68,7 +68,7 @@ const InfoActividadUsuario = ({ user, actividad }) => {
                                         src={
                                              ext === 'png' || ext === 'jpg'
                                                ? archivo.url
-                                               : `${process.env.REACT_APP_BACKEND}/placeholders/${archivo.nombre.slice((archivo.nombre.lastIndexOf('.') - 1 >>> 0) + 2).toLowerCase()}.png`
+                                               : `${process.env.REACT_APP_BACKEND}/placeholders/${ext}.png`
 
                                         }
 

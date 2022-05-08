@@ -35,7 +35,7 @@ const InfoActividad = ({ actividad }) => {
                <div className='d-flex'>
                {
                          actividad.Archivos && actividad.Archivos.map((archivo, idx) => {
-                           const ext = archivo.nombre.split('.')[1].toLowerCase()
+                           const ext = archivo.nombre.slice((archivo.nombre.lastIndexOf('.') - 1 >>> 0) + 2).toLowerCase()
                            return (
                               <div key={idx} className='m-2'>
                                    <pre>{archivo.nombre}</pre>
@@ -55,7 +55,7 @@ const InfoActividad = ({ actividad }) => {
                                                   src={
                                                        ext === 'png' || ext === 'jpg'
                                                          ? archivo.url
-                                                         : `${process.env.REACT_APP_BACKEND}/public/placeholders/${archivo.nombre.slice((archivo.nombre.lastIndexOf('.') - 1 >>> 0) + 2).toLowerCase()}.png`
+                                                         : `${process.env.REACT_APP_BACKEND}/public/placeholders/${ext}.png`
 
                                                   }
 
