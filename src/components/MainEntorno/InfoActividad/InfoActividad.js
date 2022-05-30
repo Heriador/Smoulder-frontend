@@ -16,7 +16,7 @@ const InfoActividad = ({ actividad }) => {
                <h1>{actividad.titulo}</h1>
           </div>
           <div className='info_creador'>
-               <p>{actividad.creador.nombre} {actividad.creador.nombre}</p>
+               <p>{actividad.creador.nombre} {actividad.creador.apellido}</p>
 
               <p>Fecha de entrega:
                    {
