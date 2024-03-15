@@ -1,28 +1,31 @@
+/* eslint-disable semi */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react'
-import { Container, Row, Col, Form, Card, Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { login } from '../../store/actions/auth'
+import React, { useState } from 'react';
+import { Container, Row, Col, Form, Card, Button } from 'react-bootstrap';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { login } from '../../store/actions/auth';
 
-import './login.scss'
+import './login.scss';
 
 const Login = ({ history }) => {
-  const dispatch = useDispatch()
-  const [correo, setCorreo] = useState('')
-  const [contraseña, setContraseña] = useState('')
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [correo, setCorreo] = useState('');
+  const [contraseña, setContraseña] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     try {
-      dispatch(login({ correo, contraseña }, history))
+      await dispatch(login({ correo, contraseña }));
+      navigate('/');
     } catch (e) {
-      console.log(e.message)
+      console.log(e.message);
     }
-  }
+  };
 
   return (
     <Container>
@@ -30,7 +33,7 @@ const Login = ({ history }) => {
         <Col sm={4}>
           <Card className="mt-5">
             <Card.Header>LOGIN</Card.Header>
-            <Card.Body className='loginContainer'>
+            <Card.Body className="loginContainer">
               <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="loginEmail">
                   <Form.Label className="mr-4">correo</Form.Label>
@@ -57,7 +60,7 @@ const Login = ({ history }) => {
             </Card.Body>
             <Card.Footer>
               <p>
-                 No tienes una cuenta?
+                No tienes una cuenta?
                 <Link to="/register">Registrate</Link>
               </p>
             </Card.Footer>
@@ -65,7 +68,7 @@ const Login = ({ history }) => {
         </Col>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

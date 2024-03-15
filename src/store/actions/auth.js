@@ -1,43 +1,47 @@
-import AuthService from '../../Services/AuthService'
+/* eslint-disable semi */
+import AuthService from '../../Services/AuthService';
 
-export const LOGIN = 'LOGIN'
-export const REGISTER = 'REGISTER'
-export const UPDATE_USER = 'UPDATE_USER'
-export const LOGOUT = 'LOGOUT'
+export const LOGIN = 'LOGIN';
+export const REGISTER = 'REGISTER';
+export const UPDATE_USER = 'UPDATE_USER';
+export const LOGOUT = 'LOGOUT';
 
-export const login = (params, history) => async (dispatch) => {
+export const login = (params) => async (dispatch) => {
   try {
-    const data = await AuthService.login(params)
+    const data = await AuthService.login(params);
 
-    dispatch({ type: LOGIN, payload: data })
-    history.push('/')
+    dispatch({ type: LOGIN, payload: data });
   } catch (e) {
-    console.log({ error: e.message })
+    console.log({ error: e.message });
   }
-}
+};
 
 export const register = (params, history) => async (dispatch) => {
   try {
-    const data = await AuthService.register(params)
+    const data = await AuthService.register(params);
 
-    dispatch({ type: REGISTER, payload: data })
-    history.push('/')
+    dispatch({ type: REGISTER, payload: data });
+    history.push('/');
   } catch (e) {
-    console.log(e.message)
+    console.log(e.message);
   }
-}
+};
 
 export const updateUser = (params) => async (dispatch) => {
   try {
-    const data = await AuthService.update(params)
+    const data = await AuthService.update(params);
 
-    dispatch({ type: UPDATE_USER, payload: data })
+    dispatch({ type: UPDATE_USER, payload: data });
   } catch (e) {
-    console.error(e.message)
+    console.error(e.message);
   }
-}
+};
 
-export const logOut = () => dispatch => {
-  AuthService.logout()
-  dispatch({ type: LOGOUT })
-}
+export const logOut = () => (dispatch) => {
+  try {
+    AuthService.logout();
+    dispatch({ type: LOGOUT });
+  } catch (e) {
+    console.log(e.message);
+  }
+};
