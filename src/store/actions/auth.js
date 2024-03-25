@@ -16,12 +16,11 @@ export const login = (params) => async (dispatch) => {
   }
 };
 
-export const register = (params, history) => async (dispatch) => {
+export const register = (params) => async (dispatch) => {
   try {
     const data = await AuthService.register(params);
 
     dispatch({ type: REGISTER, payload: data });
-    history.push('/');
   } catch (e) {
     console.log(e.message);
   }

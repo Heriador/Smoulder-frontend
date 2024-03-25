@@ -1,22 +1,24 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { register } from '../../store/actions/auth'
 
-const Register = ({ history }) => {
+const Register = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [nombre, setNombre] = useState('')
   const [apellido, setApellido] = useState('')
   const [correo, setCorreo] = useState('')
   const [contraseña, setContraseña] = useState('')
   const [rol, setRol] = useState(1)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      dispatch(register({ nombre, apellido, correo, contraseña, rol }, history))
+      await dispatch(register({ nombre, apellido, correo, contraseña, rol }))
+      navigate('/')
     } catch (e) {
       console.log(e.message)
     }
