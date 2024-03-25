@@ -21,7 +21,11 @@ const ArchivoService = {
       })
       return archivo.data
     } catch (e) {
-      console.error(e.message)
+      if (e.response && e.response.status === 404) {
+        return {}
+      } else {
+        console.error(e.message)
+      }
     }
   },
   eliminar: async ({ actividadId, archivoId }) => {

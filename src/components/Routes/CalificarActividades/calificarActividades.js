@@ -23,7 +23,7 @@ const CalificarActividades = ({ entorno }) => {
   }
 
   const isSelected = (usuario, actividad) => (currentUser.id === usuario.id && currentActividad.id === actividad.id) ? 'selected' : ''
-
+  console.log(actividades.length)
   return (
 
      <Container fluid className='p-0 d-flex flex-column position-absolute h-100'>
@@ -33,6 +33,7 @@ const CalificarActividades = ({ entorno }) => {
                     <Accordion>
                     { actividades.length > 0
                       ? actividades.map(actividad => {
+                        console.log(actividad)
                         return (
                           actividad.Usuarios.length > 0 &&
                               <Accordion.Item key={actividad.id} eventKey={actividad.id} >

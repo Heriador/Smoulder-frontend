@@ -29,8 +29,6 @@ function App() {
           {
             // Rutas Entorno
             entornos.map((entorno, idx) => {
-              console.log(entorno);
-
               return (
                 <Route
                   key={`${idx}ent`}
